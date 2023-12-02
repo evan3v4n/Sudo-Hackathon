@@ -1,12 +1,14 @@
-import './App.css';
-import header from './components/Header'
+import React from 'react';
+import MapComponent from './components/MapComponent';
+import Header from './components/Header'
 
 function App() {
   return (
-    <div className="App">
-      <header/>
-    </div>
-  );
+    <main className="App">
+      <Header />
+      <MapComponent />
+    </main>
+  )
 }
 
 export default App;
