@@ -9,10 +9,15 @@ const MapComponent = () => {
     useEffect(() => {
         if (!mapRef.current || mapRef.current._leaflet_id) return;
     
-        const map = L.map(mapRef.current).setView([51.505, -0.09], 13);
+        const map = L.map(mapRef.current, {
+            worldCopyJump: true,
+            minZoom: 3, // Set a minimum zoom level
+            maxZoom: 19, // Maximum zoom level, already set in your tileLayer
+            maxBounds: [[-90, -180], [90, 180]], // Set the maximum bounds for panning
+        }).setView([51.505, -0.09], 4);
     
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
+            maxZoom: 10,
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
     
@@ -22,7 +27,8 @@ const MapComponent = () => {
     }, []);
     
 
-    return <div id="map" ref={mapRef} style={{ height: '500px', width: '100%' }} />;
-};
+    return <div id="map" ref={mapRef} style={{ height: '1000px', width: '100%' }} />;
+
+}
 
 export default MapComponent;

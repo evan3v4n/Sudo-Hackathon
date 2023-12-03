@@ -1,11 +1,11 @@
 import React from 'react';
 import MapComponent from './components/MapComponent';
-import Header from './components/Header'
+import HomePage from './components/HomePage';
 
 function App() {
   return (
-    <main className="App">
-      <Header />
+    <main>
+      <HomePage />
       <MapComponent />
     </main>
   )
