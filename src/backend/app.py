@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for
 import openai
+from config import OPENAI_KEY
 
 app = Flask(__name__)
-
+GPT_MODEL = "gpt-3.5-turbo"
 # OpenAI API key
-openai.api_key = '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'
+openai.api_key = OPENAI_KEY
 
 @app.route('/')
 def home():
@@ -18,15 +19,21 @@ def about():
 def chat():
     if request.method == 'POST':
         user_input = request.form['user_input']
+        print(f"Received user input: {user_input}")
 
         # Make a call to the OpenAI API
-        response = openai.Completion.create(
-            engine="text-davinci-003",
-            prompt=user_input,
-            max_tokens=150
-        )
+        response = openai.ChatCompletion.create(
+    messages=[
+        {'role': 'system', 'content': 'You answer questions about the World Climate.'},
+        {'role': 'user', 'content': user_input},
+    ],
+    model=GPT_MODEL,
+    temperature=0.5
+)
 
         chat_reply = response.choices[0].text.strip()
+        print(f"Chat reply: {chat_reply}")
+
 
         return render_template('chat.html', user_input=user_input, chat_reply=chat_reply)
 

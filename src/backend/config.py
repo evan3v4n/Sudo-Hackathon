@@ -1,0 +1,1 @@
+OPENAI_KEY = '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'
