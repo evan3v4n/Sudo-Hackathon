@@ -68,5 +68,6 @@ const AboutPage = () => {
     Key:
   </div>
 </div>
-
+  )
+}
 export default AboutPage
