@@ -6,6 +6,7 @@ function App() {
   return (
     <main>
       <HomePage />
+      <AboutPage />
       <MapComponent />
     </main>
   )
